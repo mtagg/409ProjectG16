@@ -17,7 +17,7 @@ public class DatabaseDriver {
     //Change before use
     private static final String DB_URL = "jdbc:mysql://localhost:3306/inventory";
     private static final String DB_USR = "root";
-    private static final String DB_PWD = "Hadeel_bassem1";
+    private static final String DB_PWD = "I like turtle5";
 
     /**
      * Constructor of Database Driver class

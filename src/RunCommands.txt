@@ -1,12 +1,17 @@
-**Make sure MySQL credentials are good first :D
+**Make sure MySQL credentials are good first ( as of current, they are changed in the DatabaseDriver.java file):D
 
-Commands to run program (not unit-tests) from "src" folder:
+1. Commands to run program (not unit-tests) from "src" folder:
 ***
 javac -cp .;lib\mysql-connector-java-8.0.23.jar;. edu\ucalgary\ensf409\InventorySystem.java
 java -cp .;lib\mysql-connector-java-8.0.23.jar;. edu.ucalgary.ensf409.InventorySystem
 ***
 
-Commands to run Unit-tests(not program) from "src" folder:
-
+2. Commands to run Unit-tests(not program) from "src" folder:
 ***
+***
+
+3. Command to add inventory.sql to local MySQL database (within the MySQL commandline client):
+you will have to change the path as necessary for your machine
+***
+mysql> source C:\Users\mmmta\Downloads\409TeamProject\d2lDocs\inventory.sql
 ***
