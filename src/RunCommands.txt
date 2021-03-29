@@ -1,0 +1,12 @@
+**Make sure MySQL credentials are good first :D
+
+Commands to run program (not unit-tests) from "src" folder:
+***
+javac -cp .;lib\mysql-connector-java-8.0.23.jar;. edu\ucalgary\ensf409\InventorySystem.java
+java -cp .;lib\mysql-connector-java-8.0.23.jar;. edu.ucalgary.ensf409.InventorySystem
+***
+
+Commands to run Unit-tests(not program) from "src" folder:
+
+***
+***
