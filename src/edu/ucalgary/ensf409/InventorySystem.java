@@ -13,8 +13,6 @@ package edu.ucalgary.ensf409;
  */
 
 
-
-
 import java.util.Scanner;
 import java.util.ArrayList;
 
@@ -26,12 +24,17 @@ public class InventorySystem {
     private InventoryManager inventoryManager;
     private Scanner scan;
 
+    private String category;
+    private String type;
+    private int quantity;
+
     /**
      * Constructor for Inventory System
      */
     public InventorySystem() {
-        inventoryManager = new InventoryManager();
         scan = new Scanner(System.in);
+        inventoryManager = new InventoryManager(scan);
+
     }
 
     /**
@@ -39,12 +42,13 @@ public class InventorySystem {
      * Starts UI and calls necessary methods
      */
     public void run() {
-        String category = getCategory();
-        String type = getType();
-        int quantity = getQuantity();
+        this.category = setCategory();
+        this.type = setType();
+        this.quantity = setQuantity();
         if(!inventoryManager.pieceFurniture(category, type, quantity)) {
             printErrorMessage(category);
         }
+        this.scan.close();
     }
 
     /**
@@ -69,29 +73,59 @@ public class InventorySystem {
      * Helper method to get category from user
      * @return requested category
      */
-    private String getCategory() {
-        System.out.println("Enter furniture category:");
-        return scan.nextLine();
+    private String setCategory() {
+        try {
+            System.out.println("Enter furniture category:");
+            return scan.nextLine();
+        } catch (Exception e) {
+            System.out.println("Invalid Furniture Category Request");
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
      * Helper method to get type from user
      * @return requested type
      */
-    private String getType() {
-        System.out.println("Enter furniture type:");
-        return scan.nextLine();
+    private String setType() {
+        // REGEX: "([A-Z{1}][a-z{3}]{A-Za-z {0,7})"
+        try {
+            System.out.println("Enter furniture type:");
+            return scan.nextLine();       
+        } catch (Exception e) {
+            System.out.println("Invalid" + getCategory() + "Type Request");
+            e.printStackTrace();
+            return null;
+        }
     }
 
     /**
      * Helper method to get quantity from user
      * @return requested quantity
      */
-    private int getQuantity() {
-        System.out.println("Enter the quantity:");
-        return scan.nextInt();
+    private int setQuantity() {
+        try {
+            System.out.println("Enter the quantity:");
+            return scan.nextInt();
+        } catch (Exception e) {
+            System.out.println("Invalid Furniture Quantity Request");
+            e.printStackTrace();
+            return 0;
+        }
     }
 
+    public String getCategory() {
+        return this.category;
+    }
+
+    public String getType() {
+        return this.type;
+    }
+
+    public int getQuantity() {
+        return this.quantity;
+    }
     public static void main(String [] args) {
         InventorySystem inventorySystem = new InventorySystem();
         inventorySystem.run();

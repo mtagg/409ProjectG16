@@ -1,6 +1,27 @@
 package edu.ucalgary.ensf409;
 import org.junit.*;
-import static org.junit.Assert.*;
+
 public class InventorySystemTest {
-    
+    public InventorySystemTest() {
+    }
+
+    @Test
+    public void TestRun() {
+
+    }
+
+    @Test
+    public void testGetCategory() {
+
+    }
+
+    @Test
+    public void testGetType() {
+
+    }
+
+    @Test
+    public void testGetQuantity() {
+
+    }
 }

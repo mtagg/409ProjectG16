@@ -2,6 +2,7 @@ package edu.ucalgary.ensf409;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.util.ArrayList;
+import java.util.Scanner;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.sql.DriverManager;
@@ -16,18 +17,35 @@ public class DatabaseDriver {
 
     //Change before use
     private static final String DB_URL = "jdbc:mysql://localhost:3306/inventory";
-    private static final String DB_USR = "root";
-    private static final String DB_PWD = "I like turtle5";
+    private final String DB_USR;
+    private final String DB_PWD;
 
     /**
      * Constructor of Database Driver class
      */
-    public DatabaseDriver() {
+    public DatabaseDriver(Scanner sc) {
+        String user = "";
+        String pass = "";
+        // collect SQL user creds
         try {
-            conn = DriverManager.getConnection(DB_URL, DB_USR, DB_PWD);
-        } catch (SQLException e) {
+            System.out.print("\nEnter MySQL user:");
+            user = sc.nextLine();
+            System.out.print("Enter MySQL password:");
+            pass = sc.nextLine();
+            System.out.println();
+        } catch (Exception e) {
             e.printStackTrace();
         }
+        DB_USR = user;
+        DB_PWD = pass;
+        // attempt MySQL connection
+        try {
+            this.conn = DriverManager.getConnection(DB_URL, DB_USR, DB_PWD);
+        } catch (SQLException e) {
+            System.out.println("MySQL connection attempt failed\n");
+            e.printStackTrace();
+        }
+
     }
 
     /**

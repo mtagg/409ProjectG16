@@ -14,6 +14,7 @@ package edu.ucalgary.ensf409;
 
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 /**
  * Inventory manager class that handles piecing together components
@@ -25,8 +26,8 @@ public class InventoryManager {
     /**
      * Constructor of Inventory Manager class
      */
-    public InventoryManager() {
-        dbDriver = new DatabaseDriver();
+    public InventoryManager(Scanner s) {
+        dbDriver = new DatabaseDriver(s);
     }
 
     /**
