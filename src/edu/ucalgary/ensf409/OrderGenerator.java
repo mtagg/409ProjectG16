@@ -19,8 +19,9 @@ public class OrderGenerator {
      * @param quantity quantity of furniture requested
      */
     public void generateOrder(ArrayList<Furniture> furniture, int price, String category, String type, int quantity) {
+        FileWriter writer = null;
         try {
-            FileWriter writer = new FileWriter("orderform.txt");
+            writer = new FileWriter("orderform.txt");
             writer.write("Furniture Order Form\n\n");
             writer.write("Faculty Name:\n");
             writer.write("Contact:\n");
@@ -30,13 +31,22 @@ public class OrderGenerator {
             for(Furniture f : furniture)
                 writer.write("ID: " + f.getID() + "\n");
             writer.write("\nTotal Price: $" + price);
-            writer.flush();
-            writer.close();
 
-            File f = new File("orderform.txt");
-            System.out.println("orderform.txt created in path: " + f.getAbsolutePath());
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            if (writer != null) {
+                try {
+                writer.flush();
+                writer.close();
+                File f = new File("orderform.txt");
+                System.out.println("Order created at path: " + f.getAbsolutePath());
+            } catch (Exception e) {
+                System.out.println("Could not close filewriter");
+                    e.printStackTrace();
+                    System.exit(1);
+                }
+            }
         }
     }
 }
