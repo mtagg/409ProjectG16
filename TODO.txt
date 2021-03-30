@@ -1,13 +1,9 @@
 Code TODO:
-* commandline SQL credentials input
-* will need new data ovjects to support dynamic SQL access
-* error handling on order input from terminal
-* try/catch with IO, generating order.
 * Database connectivity test and subsequent error handling
-* probably just a good idea to apply error handing to anything that is suseptible to non-code related errors
 UML TODO:
 * figure out how to underline parts of text lmao
 * update variables as the code changes
 * draw relations
 
 Unit-Testing TODO:
+pretty much all of it :p
