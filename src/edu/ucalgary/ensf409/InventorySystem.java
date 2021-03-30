@@ -34,7 +34,6 @@ public class InventorySystem {
     public InventorySystem() {
         scan = new Scanner(System.in);
         inventoryManager = new InventoryManager(scan);
-
     }
 
     /**
@@ -42,13 +41,23 @@ public class InventorySystem {
      * Starts UI and calls necessary methods
      */
     public void run() {
-        this.category = setCategory();
-        this.type = setType();
-        this.quantity = setQuantity();
+        do {
+            this.category = setCategory();
+        } while (this.category == null);
+
+        do {
+            this.type = setType();
+        } while (this.type == null);
+
+        do {
+            this.quantity = setQuantity();
+        } while (this.quantity == -1);
+
         if(!inventoryManager.pieceFurniture(category, type, quantity)) {
             printErrorMessage(category);
         }
         this.scan.close();
+        this.inventoryManager.close();
     }
 
     /**
@@ -76,7 +85,13 @@ public class InventorySystem {
     private String setCategory() {
         try {
             System.out.println("Enter furniture category:");
-            return scan.nextLine();
+            String category = scan.nextLine();
+            if (inventoryManager.checkCategory(category))
+                return category;
+            else {
+                System.out.println("Category not found, please retry.");
+                return null;
+            }
         } catch (Exception e) {
             System.out.println("Invalid Furniture Category Request");
             e.printStackTrace();
@@ -89,10 +104,15 @@ public class InventorySystem {
      * @return requested type
      */
     private String setType() {
-        // REGEX: "([A-Z{1}][a-z{3}]{A-Za-z {0,7})"
         try {
             System.out.println("Enter furniture type:");
-            return scan.nextLine();       
+            String type = scan.nextLine();
+            if (inventoryManager.checkType(this.category, type))
+                return type;
+            else {
+                System.out.println("Type not found, please retry.");
+                return null;
+            }
         } catch (Exception e) {
             System.out.println("Invalid" + getCategory() + "Type Request");
             e.printStackTrace();
@@ -107,7 +127,13 @@ public class InventorySystem {
     private int setQuantity() {
         try {
             System.out.println("Enter the quantity:");
-            return scan.nextInt();
+            int q = scan.nextInt();
+            if (q >= 0)
+                return q;
+            else {
+                System.out.println("Integer must be >= 0, please try again.");
+                return -1;
+            }
         } catch (Exception e) {
             System.out.println("Invalid Furniture Quantity Request");
             e.printStackTrace();

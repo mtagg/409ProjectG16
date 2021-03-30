@@ -1,4 +1,6 @@
 package edu.ucalgary.ensf409;
+
+import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
 
@@ -30,6 +32,9 @@ public class OrderGenerator {
             writer.write("\nTotal Price: $" + price);
             writer.flush();
             writer.close();
+
+            File f = new File("orderform.txt");
+            System.out.println("orderform.txt created in path: " + f.getAbsolutePath());
         } catch (Exception e) {
             e.printStackTrace();
         }

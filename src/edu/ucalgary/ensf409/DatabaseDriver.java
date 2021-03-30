@@ -14,8 +14,7 @@ import java.sql.*;
  */
 public class DatabaseDriver {
     private Connection conn;
-
-    //Change before use
+    private ResultSet rs;
     private static final String DB_URL = "jdbc:mysql://localhost:3306/inventory";
     private final String DB_USR;
     private final String DB_PWD;
@@ -35,6 +34,8 @@ public class DatabaseDriver {
             System.out.println();
         } catch (Exception e) {
             e.printStackTrace();
+            System.err.println("MySQL user/password were not collected, please restart program.");
+            System.exit(1);
         }
         DB_USR = user;
         DB_PWD = pass;
@@ -42,12 +43,61 @@ public class DatabaseDriver {
         try {
             this.conn = DriverManager.getConnection(DB_URL, DB_USR, DB_PWD);
         } catch (SQLException e) {
-            System.out.println("MySQL connection attempt failed\n");
             e.printStackTrace();
+            System.out.println("MySQL connection attempt failed\n");
+            System.exit(1);
         }
 
     }
 
+    /**
+     * method closes ResultSet and SQL connection variables rs, conn.
+     */
+    public void close() {
+        try {
+            rs.close();
+            conn.close();
+        } catch (SQLException e) {
+            System.err.println("Error whilst closing SQL connection");
+            e.printStackTrace();
+        }    
+    }
+
+    /**
+     * method checks for validity of category input from user
+     * 
+     * @param category to be checked
+     * @return true if category is found, else false
+     */
+    public boolean checkCategory(String category) {
+        try {
+            String query = "SELECT * FROM " + category;
+            PreparedStatement stmt = conn.prepareStatement(query);
+            this.rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            return false;
+        }
+    }
+
+    /**
+     * method checks for validity of type input from user
+     * 
+     * @param category validated category to search within
+     * @param type     to be checked within category
+     * @return true if type is found for specified category, else, false
+     */
+    public boolean checkType(String category, String type) {
+        try {
+            String query = "SELECT * FROM " + category + " WHERE Type = ?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, type);
+            this.rs = stmt.executeQuery();
+            return rs.next();
+        } catch (SQLException e) {
+            return false;
+        }
+    }
     /**
      * Method to return all furniture that match the requested category and type
      * @param category category of the furniture
@@ -62,7 +112,7 @@ public class DatabaseDriver {
             
             stmt.setString(1, type);
 
-            ResultSet rs = stmt.executeQuery();
+            this.rs = stmt.executeQuery();
             while(rs.next()) {
                 String ID = rs.getString("ID");
                 int price = rs.getInt("Price");
@@ -92,7 +142,7 @@ public class DatabaseDriver {
             String query = String.format("SELECT ManuID FROM %s", category);
             Statement stmt = conn.createStatement();
             ArrayList<String> ids = new ArrayList<String>();
-            ResultSet rs = stmt.executeQuery(query);
+            this.rs = stmt.executeQuery(query);
             while(rs.next()) {
                 String id = rs.getString("ManuID");
                 if(ids.contains(id))
@@ -111,8 +161,8 @@ public class DatabaseDriver {
             while(result.next()) {
                 manufacturers.add(result.getString("Name"));
             }
-
             statement.close();
+            result.close();
         } catch (SQLException e) {
             e.printStackTrace();
         }

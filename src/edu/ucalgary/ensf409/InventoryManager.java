@@ -31,6 +31,34 @@ public class InventoryManager {
     }
 
     /**
+     * wrapper for DatabaseDriver method checkCategory() to check category validity
+     * 
+     * @param category to be checked for validity
+     * @return true if category exists within database, else, false
+     */
+    public boolean checkCategory(String category) {
+        return this.dbDriver.checkCategory(category);
+    }
+
+    /**
+     * wrapper for DatabaseDriver method checkType() to check type validity
+     * 
+     * @param category is a verified database category
+     * @param type     is the type to be checked for within category
+     * @return true if type is found in category
+     */
+    public boolean checkType(String category, String type) {
+        return this.dbDriver.checkType(category, type);
+    }
+
+    /**
+     * wrapper for DatabaseDriver method close() to close SQL connection
+     */
+    public void close() {
+        this.dbDriver.close();
+    }
+
+    /**
      * Method to attempt to piece together furniture based on user's request
      * @param category category of the furniture
      * @param type type of the furniture
