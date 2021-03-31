@@ -86,8 +86,9 @@ public class InventorySystem {
         try {
             System.out.println("Enter furniture category:");
             String category = scan.nextLine();
-            if (inventoryManager.checkCategory(category))
+            if (inventoryManager.checkCategory(category)) {
                 return category;
+            }
             else {
                 System.out.println("Category not found, please retry.");
                 return null;
@@ -107,8 +108,9 @@ public class InventorySystem {
         try {
             System.out.println("Enter furniture type:");
             String type = scan.nextLine();
-            if (inventoryManager.checkType(this.category, type))
+            if (inventoryManager.checkType(this.category, type)) {
                 return type;
+            }
             else {
                 System.out.println("Type not found, please retry.");
                 return null;
@@ -128,8 +130,9 @@ public class InventorySystem {
         try {
             System.out.println("Enter the quantity:");
             int q = scan.nextInt();
-            if (q >= 0)
+            if (q >= 0) {
                 return q;
+            }
             else {
                 System.out.println("Integer must be >= 0, please try again.");
                 return -1;
