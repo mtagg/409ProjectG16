@@ -6,4 +6,5 @@ UML TODO:
 * draw relations
 
 Unit-Testing TODO:
+* figure out how to expect errors for removeFurniture
 pretty much all of it :p
