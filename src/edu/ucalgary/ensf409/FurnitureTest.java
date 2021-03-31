@@ -19,6 +19,7 @@ public class FurnitureTest {
         assertEquals("testGetComponents failed: ", expected, actual);
     }
 
+    @Test
     public void testGetID() {
         var ID = "1234";
         var price = 0;
@@ -30,6 +31,7 @@ public class FurnitureTest {
         assertEquals("testGetID failed: ", expected, actual);
     }
 
+    @Test
     public void testGetPrice() {
         var ID = "1234";
         var price = 0;

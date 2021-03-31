@@ -53,13 +53,15 @@ public class DatabaseDriver {
     /**
      * method closes ResultSet and SQL connection variables rs, conn.
      */
-    public void close() {
+    public boolean close() {
         try {
             rs.close();
             conn.close();
+            return true;
         } catch (SQLException e) {
             System.err.println("Error whilst closing SQL connection");
             e.printStackTrace();
+            return false;
         }    
     }
 
