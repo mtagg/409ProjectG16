@@ -1,5 +1,17 @@
 package edu.ucalgary.ensf409;
 
+/**
+ * @author Michael Tagg <a href="mailto:michael.tagg@ucalgary.ca">
+ *         michael.tagg@ucalgary.ca</a>
+ * @author
+ * @author
+ * @author 
+ *
+ * 
+ * @version 1.0
+ * @since 1.0
+ */
+
 import java.io.File;
 import java.io.FileWriter;
 import java.util.ArrayList;
@@ -17,8 +29,10 @@ public class OrderGenerator {
      * @param category category of furniture requested
      * @param type type of furniture requested
      * @param quantity quantity of furniture requested
+     * @return true if writer opened/closed successfuly, else, false
      */
-    public void generateOrder(ArrayList<Furniture> furniture, int price, String category, String type, int quantity) {
+    public boolean generateOrder(ArrayList<Furniture> furniture, int price, String category, String type,
+            int quantity) {
         FileWriter writer = null;
         try {
             writer = new FileWriter("orderform.txt");
@@ -41,12 +55,14 @@ public class OrderGenerator {
                 writer.close();
                 File f = new File("orderform.txt");
                 System.out.println("Order created at path: " + f.getAbsolutePath());
+                return true;
             } catch (Exception e) {
                 System.out.println("Could not close filewriter");
                     e.printStackTrace();
-                    System.exit(1);
+                    return false;
+
                 }
             }
-        }
+        }return false; //if writer never opened
     }
 }
