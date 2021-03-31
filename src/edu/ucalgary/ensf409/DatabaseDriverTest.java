@@ -9,7 +9,7 @@ import java.sql.*;
 public class DatabaseDriverTest {
     static DatabaseDriver dTest;
 
-    @BeforeClass
+    @BeforeClass 
     // Asking for credentials using the keyboard once before any tests are run. These credentials will be used in all
     // tests to establish a connection to the database
     public static void setup(){
