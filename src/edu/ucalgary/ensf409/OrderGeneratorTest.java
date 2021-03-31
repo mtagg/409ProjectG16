@@ -1,4 +1,16 @@
+package edu.ucalgary.ensf409;
 
+/**
+ * @author Michael Tagg <a href="mailto:michael.tagg@ucalgary.ca">
+ *         michael.tagg@ucalgary.ca</a>
+ * @author
+ * @author
+ * @author 
+ *
+ * 
+ * @version 1.0
+ * @since 1.0
+ */
 package edu.ucalgary.ensf409;
 
 import org.junit.*;
@@ -69,7 +81,7 @@ public class OrderGeneratorTest {
         test.generateOrder(furniture, price, category, type, quantity);
         String expected = "Furniture Order Form\n\nFaculty Name:\nContact:\nDate:\n\nOriginal Request: Desk Lamp, 1\n\nItems Ordered\nID: D3820\n\nTotal Price: $150";
         String actual = "";
-
+        // read the entire orderform file and compare to the expected string:
         FileReader f = null;
         try {
             f = new FileReader("orderform.txt");
