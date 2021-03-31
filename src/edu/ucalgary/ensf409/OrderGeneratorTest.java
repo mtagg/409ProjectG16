@@ -11,7 +11,6 @@ package edu.ucalgary.ensf409;
  * @version 1.0
  * @since 1.0
  */
-package edu.ucalgary.ensf409;
 
 import org.junit.*;
 import static org.junit.Assert.*;

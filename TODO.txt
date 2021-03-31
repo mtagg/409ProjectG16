@@ -1,10 +1,13 @@
 Code TODO:
 * Database connectivity test and subsequent error handling
+
 UML TODO:
 * figure out how to underline parts of text lmao
 * update variables as the code changes
-* draw relations
 
 Unit-Testing TODO:
 * figure out how to expect errors for removeFurniture
-pretty much all of it :p
+
+Stuff from discussion board:
+* test connectivity (SQL)
+* test initialization / close methods (SQL)
