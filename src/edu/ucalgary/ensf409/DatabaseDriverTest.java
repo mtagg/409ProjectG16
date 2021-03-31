@@ -71,7 +71,7 @@ public class DatabaseDriverTest {
     }
 
     // Cannot get test to assert that an error occurs
-    /*
+    
     @Rule public ExpectedException error=ExpectedException.none();
 
     @Test
@@ -84,5 +84,5 @@ public class DatabaseDriverTest {
         // The following line should throw an exception because no object with ID "X0000" exists
         dTest.removeFurniture(aList, "CHAIR");
     }
-    */
+    
 }
