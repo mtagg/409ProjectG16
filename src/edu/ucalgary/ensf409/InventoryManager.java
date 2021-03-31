@@ -54,8 +54,8 @@ public class InventoryManager {
     /**
      * wrapper for DatabaseDriver method close() to close SQL connection
      */
-    public void close() {
-        this.dbDriver.close();
+    public boolean close() {
+        return this.dbDriver.close();
     }
 
     /**
@@ -66,6 +66,9 @@ public class InventoryManager {
      * @return true if the furniture can be pieced together, false otherwise
      */
     public boolean pieceFurniture(String category, String type, int quantity) {
+        if(quantity < 0){
+            return false;
+        }
         ArrayList<Furniture> furniture = dbDriver.getFurniture(category, type);
         if(furniture.size() == 0)
             return false;
@@ -152,13 +155,15 @@ public class InventoryManager {
         int [] covered = new int[array.get(0).length];
         for(boolean [] bArr : array) {
             for(int i = 0; i < covered.length; i++) {
-                if(bArr[i])
+                if(bArr[i]){
                     covered[i]++;
+                }
             }
         }
         for(int i : covered) {
-            if(i < quantity)
+            if(i < quantity){   
                 return false;
+            }
         }
         return true;
     }

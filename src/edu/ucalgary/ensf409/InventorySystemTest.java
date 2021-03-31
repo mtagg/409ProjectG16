@@ -6,7 +6,8 @@ public class InventorySystemTest {
     }
 
     @Test
-    public void TestRun() {
+    public void testRun() { //TestRun to testRun
+        //test if error message happens
 
     }
 
