@@ -9,9 +9,9 @@ java -cp .;lib\mysql-connector-java-8.0.23.jar;. edu.ucalgary.ensf409.InventoryS
 ***
 First, compile the package, then compile test class(es) and run Junit commands:
 ***
-javac -cp .;lib\mysql-connector-java-8.0.23.jar;. edu\ucalgary\ensf409\InventorySystem.java
-javac -cp ;mysql-connector-java-8.0.23.jar;lib\junit-4.13.2.jar;. edu\ucalgary\ensf409\FurnitureTest.java
-java -cp ;mysql-connector-java-8.0.23.jar;lib\junit-4.13.2.jar;lib\hamcrest-core-1.3.jar;. org.junit.runner.JUnitCore edu.ucalgary.ensf409.FurnitureTest
+javac -cp ;lib\mysql-connector-java-8.0.23.jar;. edu\ucalgary\ensf409\InventorySystem.java
+javac -cp ;mysql-connector-java-8.0.23.jar;lib\junit-4.13.2.jar;. edu\ucalgary\ensf409\InventoryManagerTest.java
+java -cp ;lib\mysql-connector-java-8.0.23.jar;lib\junit-4.13.2.jar;lib\hamcrest-core-1.3.jar;. org.junit.runner.JUnitCore edu.ucalgary.ensf409.InventoryManagerTest
 ***
 
 
