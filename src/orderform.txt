@@ -4,10 +4,10 @@ Faculty Name:
 Contact:
 Date:
 
-Original Request: ergonomic chair, 1
+Original Request: Task CHAIR, 1
 
 Items Ordered
-ID: C4839
-ID: C5409
+ID: C0914
+ID: C3405
 
-Total Price: $250
+Total Price: $150

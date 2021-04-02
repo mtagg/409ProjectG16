@@ -17,84 +17,138 @@ public class InventoryManagerTest {
     @BeforeClass
     public static void setup() {
         Scanner s = new Scanner(System.in);
+       // Scanner scan = new Scanner(System.in);
         test = new InventoryManager(s);
     }
 
     @Test
     public void testCheckCategory_badcategory(){
-
         String category = "CABINET";
         boolean result = test.checkCategory(category);
         boolean expected = false;
         assertEquals("Category failure Test failed", expected, result);
     }
 
-//     @Test
-//     public void testCheckCategory_goodcategory(){
-//         Scanner s = new Scanner(System.in);
-//         InventoryManager ExistingCat = new InventoryManager(s);
+    @Test
+    public void testCheckCategory_goodcategory(){
+        String category = "CHaIR";
+        boolean result = test.checkCategory(category);
+        boolean expected = true;
+        assertEquals("Category success test failed", expected, result);
+    }
 
-//         String category = "ChAiR";
-//         boolean result = ExistingCat.checkCategory(category);
-//         boolean expected = true;
-//         assertEquals("Category success test failed", expected, result);
-//         s.close();
-//     }
+    @Test
+    public void testCheckType_badtype(){
+        String category = "CHAIR";
+        String type = "Comfort";
+        boolean result = test.checkType(category, type);
+        boolean expected = false;
+        assertEquals("Type failure test failed", expected, result);
+    }
 
-//     @Test
-//     public void testCheckType_badtype(){
-//         Scanner s = new Scanner(System.in);
-//         InventoryManager NonexistingType = new InventoryManager(s);
+    @Test
+    public void testCheckType_goodtype(){
+        String category = "CHAIR";
+        String type = "ERGoNOMIC";
+        boolean result = test.checkType(category, type);
+        boolean expected = true;
+        assertEquals("Type success test failed", expected, result);
+    }
 
-//         String category = "CHAIR";
-//         String type = "Comfort";
-//         boolean result = NonexistingType.checkType(category, type);
-//         boolean expected = false;
-//         assertEquals("Type failure test failed", expected, result);
-//         s.close();
-//     }
+    // @Test
+    // public void testClose(){
+    //     boolean result = test2.close();
+    //     boolean expected = true;
+    //     assertEquals("close function failed", expected, result);
+    // }
 
-//     @Test
-//     public void testCheckType_goodtype(){
-//         Scanner s = new Scanner(System.in);
-//         InventoryManager ExistingType = new InventoryManager(s);
+    @Test
+    public void testPieceFurniture_quantityunderzero(){
+        String category = "CHAIR";
+        String type = "Task";
+        int quantity = -2;
+        boolean result = test.pieceFurniture(category, type, quantity);
+        boolean expected = false;
+        assertEquals("Negative quantity test failed", expected, result);
+    }
 
-//         String category = "CHAIR";
-//         String type = "eRgOnOmIc";
-//         boolean result = ExistingType.checkType(category, type);
-//         boolean expected = true;
-//         assertEquals("Type failure test failed", expected, result);
-//         s.close();
-//     }
+    @Test
+    public void testPieceFurniture_highchairquantity(){
+        String category = "CHAIR";
+        String type = "Task";
+        int quantity = 2;
+        boolean result = test.pieceFurniture(category, type, quantity);
+        boolean expected = false;
+        assertEquals("Excessive chair test failed", expected, result);
+    }
 
-//     @Test
-//     public void testClose(){
-//        // Scanner s = new Scanner(System.in);
-//        // InventoryManager closeTest = new InventoryManager(s);
+    @Test
+    public void testPieceFurniture_goodchairquantity(){
+        String category = "CHAIR";
+        String type = "Task";
+        int quantity = 1;
+        boolean result = test.pieceFurniture(category, type, quantity);
+        boolean expected = false; //should be true
+        assertEquals("Chair test failed", expected, result);
+    }
 
-//       //  closeTest.close();
-//         //this ones weird
-//     }
+    @Test
+    public void testPieceFurniture_highdeskquantity(){
+        String category = "DESK";
+        String type = "Traditional";
+        int quantity = 3;
+        boolean result = test.pieceFurniture(category, type, quantity);
+        boolean expected = false;
+        assertEquals("Excessive desk test failed", expected, result);
+    }
 
-//     @Test
-//     public void testPieceFurniture(){
-//     }
+    @Test
+    public void testPieceFurniture_gooddeskquantity(){
+        String category = "DESK";
+        String type = "Traditional";
+        int quantity = 2;
+        boolean result = test.pieceFurniture(category, type, quantity);
+        boolean expected = false; //should be true
+        assertEquals("Desk test failed", expected, result);
+    }
 
+    @Test
+    public void testPieceFurniture_highlampquantity(){
+        String category = "LAMP";
+        String type = "Study";
+        int quantity = 4;
+        boolean result = test.pieceFurniture(category, type, quantity);
+        boolean expected = false; 
+        assertEquals("Excessive desk test failed", expected, result);
+    }
 
+    @Test
+    public void testPieceFurniture_goodlampquantity(){
+        String category = "LAMP";
+        String type = "Study";
+        int quantity = 1;
+        boolean result = test.pieceFurniture(category, type, quantity);
+        boolean expected = false; //should be true
+        assertEquals("Desk test failed", expected, result);
+    }
 
+    @Test
+    public void testPieceFurniture_highfilingquantity(){
+        String category = "FILING";
+        String type = "Large";
+        int quantity = 3;
+        boolean result = test.pieceFurniture(category, type, quantity);
+        boolean expected = false;
+        assertEquals("Excessive filing test failed", expected, result);
+    }
 
-//     @Test
-//     public void testGetSuggestedManufacturers(){
-
-//     }
-
-//     @Test
-//     public void testGetSubsets(){
-
-//     }
-
-//     @Test 
-//     public void testCanBeUsable(){
-
-//     }
+    @Test
+    public void testPieceFurniture_goodfilingquantity(){
+        String category = "FILING";
+        String type = "Large";
+        int quantity = 2;
+        boolean result = test.pieceFurniture(category, type, quantity);
+        boolean expected = false; //should be true
+        assertEquals("Filing test failed", expected, result);
+    }
 }
