@@ -5,18 +5,18 @@ java -cp .;lib\mysql-connector-java-8.0.23.jar;. edu.ucalgary.ensf409.InventoryS
 ***
 
 
-2. Commands to run Unit-tests(not program) from "src" folder (following example is for FurnitureTest):
+2. Commands to run Unit-tests(not program) from "src" folder (following example is for InventoryManagerTest):
 ***
 First, compile the package, then compile test class(es) and run Junit commands:
 ***
-javac -cp .;lib\mysql-connector-java-8.0.23.jar;. edu\ucalgary\ensf409\InventorySystem.java
-javac -cp ;mysql-connector-java-8.0.23.jar;lib\junit-4.13.2.jar;. edu\ucalgary\ensf409\FurnitureTest.java
-java -cp ;mysql-connector-java-8.0.23.jar;lib\junit-4.13.2.jar;lib\hamcrest-core-1.3.jar;. org.junit.runner.JUnitCore edu.ucalgary.ensf409.FurnitureTest
+javac -cp ;lib\mysql-connector-java-8.0.23.jar;. edu\ucalgary\ensf409\InventorySystem.java
+javac -cp ;mysql-connector-java-8.0.23.jar;lib\junit-4.13.2.jar;. edu\ucalgary\ensf409\InventoryManagerTest.java
+java -cp ;lib\mysql-connector-java-8.0.23.jar;lib\junit-4.13.2.jar;lib\hamcrest-core-1.3.jar;. org.junit.runner.JUnitCore edu.ucalgary.ensf409.InventoryManagerTest
 ***
 
 
 3. Command to add inventory.sql to local MySQL database (within the MySQL commandline client):
-you will have to change the path as necessary for your machine
+You will have to change the path as necessary for your machine (example is shown using one of our machines)
 ***
 mysql> source C:\Users\mmmta\Downloads\409TeamProject\d2lDocs\inventory.sql
 ***
