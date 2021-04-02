@@ -44,6 +44,3 @@ public class InventorySystemTest {
         assertNotEquals(test.getQuantity(), 0);
     }
 }
-
-// javac -cp .;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar;lib/system-rules-1.19.0.jar;lib/mysql-connector-java-8.0.23.jar;. edu/ucalgary/ensf409/InventorySystemTest.java
-// java -cp .;lib/junit-4.13.2.jar;lib/hamcrest-core-1.3.jar;lib/system-rules-1.19.0.jar;lib/mysql-connector-java-8.0.23.jar;. org.junit.runner.JUnitCore edu.ucalgary.ensf409.InventorySystemTest
