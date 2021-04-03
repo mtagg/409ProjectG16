@@ -88,7 +88,7 @@ public class InventoryManagerTest {
         String type = "Task";
         int quantity = 1;
         boolean result = test.pieceFurniture(category, type, quantity);
-        boolean expected = false; //should be true
+        boolean expected = true; // should be true
         assertEquals("Chair test failed", expected, result);
     }
 
@@ -108,7 +108,7 @@ public class InventoryManagerTest {
         String type = "Traditional";
         int quantity = 2;
         boolean result = test.pieceFurniture(category, type, quantity);
-        boolean expected = false; //should be true
+        boolean expected = true; // should be true
         assertEquals("Desk test failed", expected, result);
     }
 
@@ -128,7 +128,7 @@ public class InventoryManagerTest {
         String type = "Study";
         int quantity = 1;
         boolean result = test.pieceFurniture(category, type, quantity);
-        boolean expected = false; //should be true
+        boolean expected = true; // should be true
         assertEquals("Desk test failed", expected, result);
     }
 
@@ -148,7 +148,7 @@ public class InventoryManagerTest {
         String type = "Large";
         int quantity = 2;
         boolean result = test.pieceFurniture(category, type, quantity);
-        boolean expected = false; //should be true
+        boolean expected = true; // should be true
         assertEquals("Filing test failed", expected, result);
     }
 }

@@ -5,9 +5,15 @@ public class InventorySystemTest {
     public InventorySystemTest() {
     }
 
+    static InventorySystem test;
+
+    @BeforeClass
+    public static void setup() {
+        test = new InventorySystem();
+    }
     @Test
     public void testRun() { //TestRun to testRun
-        //test if error message happens
+        // test if error message happens?
 
     }
 
