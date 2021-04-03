@@ -36,7 +36,7 @@ public class Furniture {
 
     /**
      * Getter for components' usabilities
-     * @return boolean array that represent component usability.
+     * @return boolean array that represents usable components of the Furniture piece.
      */
     public boolean [] getComponents() {
         return components;
