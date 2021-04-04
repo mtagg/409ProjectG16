@@ -3,13 +3,8 @@ Code TODO:
 
 UML TODO:
 * figure out how to underline parts of text lmao
-* update variables as the code changes
 * add cardinality on all relationships
 * update relationships between classes
 
-Unit-Testing TODO:
-* figure out how to expect errors for removeFurniture
-
 Stuff from discussion board:
-* test connectivity (SQL)
 * test initialization / close methods (SQL)

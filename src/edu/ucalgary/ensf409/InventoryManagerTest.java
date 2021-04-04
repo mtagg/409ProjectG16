@@ -1,5 +1,19 @@
 package edu.ucalgary.ensf409;
 
+/**
+ * @author Michael Tagg <a href="mailto:michael.tagg@ucalgary.ca">
+ *         michael.tagg@ucalgary.ca</a>
+ * @author Omar Erak <a href="mailto:omar.erak@ucalgary.ca">
+ *         omar.erak@ucalgary.ca</a>
+ * @author Dylan Mah <a href="mailto:dylan.mah@ucalgary.ca">
+ *         dylan.mah@ucalgary.ca</a>
+ * @author Darsh Shah <a href="mailto:darsh.shah@ucalgary.ca">
+ *         darsh.shah@ucalgary.ca</a>
+ *
+ * @version 1.0
+ * @since 1.0
+ */
+
 import org.junit.*;
 import jdk.jfr.Timestamp;
 import static org.junit.Assert.*;
@@ -145,7 +159,7 @@ public class InventoryManagerTest {
         String type = "Traditional";
         int quantity = 2;
         boolean result = test.pieceFurniture(category, type, quantity);
-        boolean expected = true
+        boolean expected = true;
         assertEquals("Desk test failed", expected, result);
     }
 
@@ -207,5 +221,14 @@ public class InventoryManagerTest {
         boolean result = test.pieceFurniture(category, type, quantity);
         boolean expected = true; 
         assertEquals("Filing test failed", expected, result);
+    }
+
+    @Test
+    public void testClose() {
+        Scanner sc = new Scanner(System.in);
+        DatabaseDriver tester = new DatabaseDriver(sc);
+        tester.checkCategory("CHAIR");
+        assertTrue("Expected True when DatabaseDriver.close() is successful", tester.close());
+        sc.close();
     }
 }

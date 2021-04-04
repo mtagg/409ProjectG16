@@ -1,9 +1,19 @@
+package edu.ucalgary.ensf409;
+
 /**
- * ENSF 409 - Final Project
- * Author: Dylan Mah (30086580)
+ * @author Michael Tagg <a href="mailto:michael.tagg@ucalgary.ca">
+ *         michael.tagg@ucalgary.ca</a>
+ * @author Omar Erak <a href="mailto:omar.erak@ucalgary.ca">
+ *         omar.erak@ucalgary.ca</a>
+ * @author Dylan Mah <a href="mailto:dylan.mah@ucalgary.ca">
+ *         dylan.mah@ucalgary.ca</a>
+ * @author Darsh Shah <a href="mailto:darsh.shah@ucalgary.ca">
+ *         darsh.shah@ucalgary.ca</a>
+ *
+ * @version 1.0
+ * @since 1.0
  */
 
-package edu.ucalgary.ensf409;
 import static org.junit.Assert.*;
 import org.junit.*;
 import org.junit.rules.ExpectedException;
