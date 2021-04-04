@@ -23,7 +23,7 @@ import java.util.ArrayList;
 public class OrderGenerator {
 
     /**
-     * Method to generate an order form
+     * Method to generate an order form following an order request by the user
      * @param furniture array of furniture to order
      * @param price total price of order
      * @param category category of furniture requested

@@ -29,7 +29,8 @@ public class InventorySystem {
     private int quantity;
 
     /**
-     * Constructor for Inventory System
+     * Constructor for Inventory System creates Scanner object to pass through
+     * InventoryManager to DatabaseDriver for MySQL credentials request
      */
     public InventorySystem() {
         scan = new Scanner(System.in);
@@ -37,8 +38,9 @@ public class InventorySystem {
     }
 
     /**
-     * Main run method
-     * Starts UI and calls necessary methods
+     * Main run method Starts UI and calls necessary methods will request user input
+     * until correct inputs are received closes Scanner object and InventoryManager
+     * to close MySQL connection
      */
     public void run() {
         do {
@@ -80,7 +82,8 @@ public class InventorySystem {
 
     /**
      * Helper method to get category from user
-     * @return requested category
+     * 
+     * @return requested category if category is found, else null
      */
     private String setCategory() {
         try {
@@ -102,7 +105,9 @@ public class InventorySystem {
 
     /**
      * Helper method to get type from user
-     * @return requested type
+     * 
+     * @return requested type within a validated category if type is found in
+     *         database else, null
      */
     private String setType() {
         try {
@@ -124,7 +129,8 @@ public class InventorySystem {
 
     /**
      * Helper method to get quantity from user
-     * @return requested quantity
+     * 
+     * @return requested quantity if a real number is provided, else returns -1
      */
     private int setQuantity() {
         try {
@@ -144,17 +150,40 @@ public class InventorySystem {
         }
     }
 
+    /**
+     * Getter method for the private variable, category
+     * 
+     * @return Furniture Category
+     */
     public String getCategory() {
         return this.category;
     }
 
+    /**
+     * Getter method for private variable, type
+     * 
+     * @return Furniture Type
+     */
     public String getType() {
         return this.type;
     }
 
+    /**
+     * Getter method for private variable, quantity
+     * 
+     * @return Furniture quantity
+     */
     public int getQuantity() {
         return this.quantity;
     }
+
+    /**
+     * main method, creates new instance of inventorySystem and calls run method to
+     * initialize the order request and subsequent methods to determine outcome of
+     * the request
+     * 
+     * @param args unused for our program
+     */
     public static void main(String [] args) {
         InventorySystem inventorySystem = new InventorySystem();
         inventorySystem.run();

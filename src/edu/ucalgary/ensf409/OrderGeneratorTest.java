@@ -7,7 +7,6 @@ package edu.ucalgary.ensf409;
  * @author
  * @author 
  *
- * 
  * @version 1.0
  * @since 1.0
  */
@@ -19,10 +18,15 @@ import java.io.File;
 import java.io.FileReader;
 import java.util.ArrayList;
 
+/** 
+ * Testing class to validate OrderGenerator class methods
+ */
 public class OrderGeneratorTest {
     public OrderGeneratorTest() {
     }
-
+    /**
+     * Test to validate a file is created in the working directory when GenerateOrder is called
+     */
     @Test
     public void testGenerateOrder_FileCreatedTest() {
         // creating OrderGenerator class and initializing generateOrder arguements
@@ -43,7 +47,9 @@ public class OrderGeneratorTest {
         boolean actual = f.exists();
         assertEquals("FileCreatedTest Failed: ", expected, actual);
     }
-
+    /**
+     * Test to validate Filewriter was not null, and was closed properly when calling generateOrder
+     */
     @Test
     public void testGenerateOrder_FileWriterTest() {
         // creating OrderGenerator class and initializing generateOrder arguements
@@ -62,7 +68,9 @@ public class OrderGeneratorTest {
         var actual = test.generateOrder(furniture, price, category, type, quantity);
         assertEquals("FileWriterTest Failed: ", expected, actual);
     }
-
+    /**
+     * Test to validate the formatting in the text file created when generateOrder is called
+     */
     @Test
     public void testGenerateOrder_OrderFormFormattingTest() {
         // creating OrderGenerator class and initializing generateOrder arguements
