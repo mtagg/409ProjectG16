@@ -2,9 +2,7 @@ Code TODO:
 * Database connectivity test and subsequent error handling
 
 UML TODO:
-* figure out how to underline parts of text lmao
-* add cardinality on all relationships
-* update relationships between classes
+* check relationships between classes
 
 Stuff from discussion board:
 * test initialization / close methods (SQL)
