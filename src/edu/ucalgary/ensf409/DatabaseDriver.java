@@ -31,7 +31,7 @@ import java.sql.*;
 public class DatabaseDriver {
     private Connection conn;
     private ResultSet rs;
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/inventory";
+    private static final String DB_URL = "jdbc:mysql://localhost/inventory";
     private final String DB_USR;
     private final String DB_PWD;
 
