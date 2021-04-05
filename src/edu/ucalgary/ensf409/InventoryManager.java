@@ -72,14 +72,16 @@ public class InventoryManager {
             return false;
         }
         ArrayList<Furniture> furniture = dbDriver.getFurniture(category, type);
+        // System.out.println("FURNITURE SIZE: " + furniture.size());
         if(furniture.size() == 0)
             return false;
         int minPrice = Integer.MAX_VALUE;
         ArrayList<Furniture> cheapest = new ArrayList<Furniture>();
         boolean found = false;
-        for(int i = 1; i < furniture.size(); i++) {
+        for (int i = 0; i < furniture.size(); i++) {
+            // System.out.println("subset created");
             ArrayList<ArrayList<Integer>> subsets = new ArrayList<ArrayList<Integer>>();
-            getSubsets(subsets, new ArrayList<Integer>(), furniture.size() - 1, i, 0);
+            getSubsets(subsets, new ArrayList<Integer>(), furniture.size() - 1, i + 1, 0);
             ArrayList<ArrayList<Furniture>> furnitureSubsets = new ArrayList<ArrayList<Furniture>>();
             for(ArrayList<Integer> subset: subsets) {
                 ArrayList<Furniture> furnitureSubset = new ArrayList<Furniture>();
@@ -154,16 +156,18 @@ public class InventoryManager {
      * @return true if the components are sufficient, false otherwise
      */
     private boolean canBeUsable(ArrayList<boolean[]> array, int quantity) {
+        // System.out.println("arrayy size is: " + array.size());
         int [] covered = new int[array.get(0).length];
+
         for(boolean [] bArr : array) {
-            for(int i = 0; i < covered.length; i++) {
+            for (int i = 0; i < bArr.length; i++) {
                 if(bArr[i]){
                     covered[i]++;
                 }
             }
         }
-        for(int i : covered) {
-            if(i < quantity){   
+        for (int i = 0; i < covered.length; i++) {
+            if (covered[i] < quantity) {
                 return false;
             }
         }

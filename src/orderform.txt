@@ -4,10 +4,11 @@ Faculty Name:
 Contact:
 Date:
 
-Original Request: Task CHAIR, 1
+Original Request: executive chair, 1
 
 Items Ordered
-ID: C0914
-ID: C3405
+ID: C7268
+ID: C5784
+ID: C2483
 
-Total Price: $150
+Total Price: $400
