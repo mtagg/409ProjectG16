@@ -6,3 +6,7 @@ UML TODO:
 
 Stuff from discussion board:
 * test initialization / close methods (SQL)
+
+Video:
+* edit video to remove pauses in between code runs
+* splice together videos from zoom meeting
