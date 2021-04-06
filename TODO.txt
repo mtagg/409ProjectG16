@@ -1,13 +1,3 @@
-Code TODO:
-* Database connectivity test and subsequent error handling
-* Debugging executive chair 1 creates an order (and check other test cases work)
-
 UML TODO:
 * check relationships between classes
 
-Stuff from discussion board:
-* test initialization / close methods (SQL)
-
-Video:
-* edit video to remove pauses in between code runs
-* splice together videos from zoom meeting
