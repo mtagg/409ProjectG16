@@ -26,6 +26,7 @@ public class Furniture {
 
     /**
      * Constructor of Furniture class
+	 *
      * @param ID ID of furniture
      * @param price price of furniture
      * @param components boolean array of component usability
@@ -38,6 +39,7 @@ public class Furniture {
 
     /**
      * Getter for components' usabilities
+	 *
      * @return boolean array that represents usable components of the Furniture piece.
      */
     public boolean [] getComponents() {
@@ -46,6 +48,7 @@ public class Furniture {
 
     /**
      * Getter for furniture ID
+	 *
      * @return furniture ID as a String
      */
     public String getID() {
@@ -54,6 +57,7 @@ public class Furniture {
 
     /**
      * Getter for furniture price
+	 *
      * @return price of furniture as an integer
      */
     public int getPrice() {
