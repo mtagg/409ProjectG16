@@ -24,7 +24,6 @@ import java.util.ArrayList;
 public class InventorySystem {
     private InventoryManager inventoryManager;
     private Scanner scan;
-
     private String category;
     private String type;
     private int quantity;
@@ -65,19 +64,23 @@ public class InventorySystem {
 
     /**
      * Helper method to print error message of furniture cannot be sourced
+	 *
      * @param category category of requested furniture
      */
     private void printErrorMessage(String category) {
         ArrayList<String> suggestedManufacturers = inventoryManager.getSuggestedManufacturers(category);
         String message = "Order cannot be fulfilled based on current inventory. Suggested manufacturers are ";
         message += suggestedManufacturers.get(0);
+		
         if(suggestedManufacturers.size() == 1) {
             System.out.println(message);
             return;
         }
+		
         for(int i = 1; i < suggestedManufacturers.size(); i++) {
             message += ", " + suggestedManufacturers.get(i);
         }
+		
         System.out.println(message + ".");
     }
 
@@ -97,7 +100,8 @@ public class InventorySystem {
                 System.out.println("Category not found, please retry.");
                 return null;
             }
-        } catch (Exception e) {
+        } 
+		catch (Exception e) {
             System.out.println("Invalid Furniture Category Request");
             e.printStackTrace();
             return null;
@@ -121,7 +125,8 @@ public class InventorySystem {
                 System.out.println("Type not found, please retry.");
                 return null;
             }
-        } catch (Exception e) {
+        } 
+		catch (Exception e) {
             System.out.println("Invalid" + getCategory() + "Type Request");
             e.printStackTrace();
             return null;
@@ -144,7 +149,8 @@ public class InventorySystem {
                 System.out.println("Integer must be >= 0, please try again.");
                 return -1;
             }
-        } catch (Exception e) {
+        } 
+		catch (Exception e) {
             System.out.println("Invalid Furniture Quantity Request");
             e.printStackTrace();
             return 0;
