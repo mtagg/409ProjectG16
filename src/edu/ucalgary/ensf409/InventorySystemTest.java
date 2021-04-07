@@ -39,18 +39,21 @@ public class InventorySystemTest {
     @Test
     // Test if variable category is updated when user inputs values
     public void testGetCategory(){
-        assertFalse(test.getCategory().isEmpty());
+        //assertFalse(test.getCategory().isEmpty());
+        assertFalse(test.category.isEmpty());
     }
 
     @Test
    // Test if variable type is updated when user inputs values
     public void testGetType(){
-        assertFalse(test.getCategory().isEmpty());
+        //assertFalse(test.getCategory().isEmpty());
+        assertFalse(test.type.isEmpty());
     }
 
     @Test
     // Test if variable quantity is updated when user inputs values
     public void testGetQuantity(){
-        assertNotEquals(test.getQuantity(), 0);
+        //assertNotEquals(test.getQuantity(), 0);
+        assertNotEquals(test.quantity, 0);
     }
 }
