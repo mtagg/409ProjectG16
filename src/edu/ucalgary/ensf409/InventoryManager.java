@@ -62,13 +62,13 @@ public class InventoryManager {
     }
 
     /**
-     * Method to attempt to piece together furniture based on user's request It will
+     * Method to attempt to piece together furniture based on user's request. It will
      * first request for the furniture data relating to the user-provided
-     * category/type, Secondly, subsets that consist of all combinations of
-     * furniture will be created, these will, thirdly, be delivered to the
+     * category/type. Secondly, subsets that consist of all combinations of
+     * furniture will be created. These will be delivered to the
      * "canBeUsable" method where each subset will be checked and true will be
      * returned if a complete piece of furniture is able to be built with the
-     * current inventory.
+     * current inventory. It will return false otherwise.
      * 
      * If furniture can be created using the inventory, an orderform will be
      * created, and furniture items will be removed using the removeFurniture method
@@ -80,12 +80,12 @@ public class InventoryManager {
      * @return true if the furniture can be pieced together, false otherwise
      */
     public boolean pieceFurniture(String category, String type, int quantity) {
-        // redundant check for invalid quantity
+        // Redundant check for invalid quantity
         if(quantity < 0){
             return false;
         }
 		
-        // request furniture items in an array lizt
+        // Request furniture items in an array lizt
         ArrayList<Furniture> furniture = dbDriver.getFurniture(category, type);
         // System.out.println("FURNITURE SIZE: " + furniture.size());
         if(furniture.size() == 0){
@@ -93,16 +93,16 @@ public class InventoryManager {
 		}
 		
         int minPrice = Integer.MAX_VALUE;
-        // create array to hold all possible(if any) furniture build combinations
+        // Create array to hold all possible(if any) furniture build combinations
         ArrayList<Furniture> cheapest = new ArrayList<Furniture>();
         boolean found = false;
 		
-        // iterate through all furniture data to find all combinations that may build a
+        // Iterate through all furniture data to find all combinations that may build a
         // complete furniture item
         for (int i = 0; i < furniture.size(); i++) {
             // System.out.println("subset created");
             ArrayList<ArrayList<Integer>> subsets = new ArrayList<ArrayList<Integer>>();
-            // creating all possible subsets to compare all possible outcomes of building
+            // Creating all possible subsets to compare all possible outcomes of building
             // combinations
             getSubsets(subsets, new ArrayList<Integer>(), furniture.size() - 1, i + 1, 0);
             ArrayList<ArrayList<Furniture>> furnitureSubsets = new ArrayList<ArrayList<Furniture>>();
@@ -117,7 +117,7 @@ public class InventoryManager {
                 furnitureSubsets.add(furnitureSubset);
             }
 
-            // adding up the price of each successful build ( if any)
+            // Adding up the price of each successful build ( if any)
             for(ArrayList<Furniture> subset : furnitureSubsets) {
                 ArrayList<boolean[]> componentsArray = new ArrayList<boolean[]>();
                 int price = 0;
@@ -127,7 +127,7 @@ public class InventoryManager {
                     price += f.getPrice();
                 }
 				
-                // check if price is cheaper than any current price (starts with comparing to
+                // Check if price is cheaper than any current price (starts with comparing to
                 // MAX_VALUE)
                 if(canBeUsable(componentsArray, quantity) && price < minPrice) {
                     cheapest = subset;
@@ -142,7 +142,7 @@ public class InventoryManager {
 			}
         }
 		
-        // if the cheapest combination has been found return create order and return
+        // If the cheapest combination has been found return create order and return
         // true
         if(minPrice != Integer.MAX_VALUE) {
             OrderGenerator order = new OrderGenerator();
@@ -151,7 +151,7 @@ public class InventoryManager {
             return true;
         }
 		
-        // code reaches this point if no combinations of furniture were successful in
+        // Code reaches this point if no combinations of furniture were successful in
         // creating a new piece
         return false;
     }
@@ -183,7 +183,7 @@ public class InventoryManager {
             return;
         }
 		
-        // recursively calls getSubsets to create a complete list of combinations to
+        // Recursively calls getSubsets to create a complete list of combinations to
         // test
         for(int i = start; i <= n; i++) {
             subset.add(i);
@@ -206,7 +206,7 @@ public class InventoryManager {
         // System.out.println("arrayy size is: " + array.size());
         int [] covered = new int[array.get(0).length];
 		
-        // populate an array to show the quantity of each part in current inventory
+        // Populate an array to show the quantity of each part in current inventory
         for(boolean [] bArr : array) {
             for (int i = 0; i < bArr.length; i++) {
                 if(bArr[i]){
@@ -215,7 +215,7 @@ public class InventoryManager {
             }
         }
 		
-        // check to make sure we have at least "quantity" number of each required part
+        // Loop to check to make sure we have at least "quantity" number of each required part
         for (int i = 0; i < covered.length; i++) {
             if (covered[i] < quantity) {
                 return false;
