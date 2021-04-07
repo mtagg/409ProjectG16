@@ -50,36 +50,33 @@ public class OrderGenerator {
             for(Furniture f : furniture){
                 // Loop to get the IDs of the components of the furniture in the array list
                 writer.write("ID: " + f.getID() + "\n");
-			}
-			
+            }
             writer.write("\nTotal Price: $" + price);
-
-        } 
-		catch (Exception e) {
+        }
+        catch (Exception e) {
             // If an error occured when writing to the file, print the stack trace
             e.printStackTrace();
-        } 
-		finally {
+        }
+        finally {
             if (writer != null) {
                 // If writing to the output file was successful, try to close the output stream, print a success
                 // message and return true
                 try {
-                writer.flush();
-                writer.close();
-                File f = new File("orderform.txt");
-                System.out.println("Order created at path: " + f.getAbsolutePath());
-                return true;
-            } 
-			catch (Exception e) {
+                    writer.flush();
+                    writer.close();
+                    File f = new File("orderform.txt");
+                    System.out.println("Order created at path: " + f.getAbsolutePath());
+                    return true;
+                }
+                catch (Exception e){
                     // If the filewriter could not be closed, print an error message, the stack trace and return false
-                System.out.println("Could not close filewriter");
-				e.printStackTrace();
-				return false;
+                    System.out.println("Could not close filewriter");
+                    e.printStackTrace();
+                    return false;
                 }
             }
         }
-		
-		// If writer never opened...
-		return false; 
+        // If writer never opened...
+        return false;
     }
 }
