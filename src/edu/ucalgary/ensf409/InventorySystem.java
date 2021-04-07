@@ -24,9 +24,9 @@ import java.util.ArrayList;
 public class InventorySystem {
     private InventoryManager inventoryManager;
     private Scanner scan;
-    private String category;
-    private String type;
-    private int quantity;
+    public String category;
+    public String type;
+    public int quantity;
 
     /**
      * Constructor for Inventory System. Creates Scanner object to pass through
@@ -170,33 +170,6 @@ public class InventorySystem {
             e.printStackTrace();
             return 0;
         }
-    }
-
-    /**
-     * Getter method for the private variable, category
-     * 
-     * @return Furniture Category
-     */
-    public String getCategory() {
-        return this.category;
-    }
-
-    /**
-     * Getter method for private variable, type
-     * 
-     * @return Furniture Type
-     */
-    public String getType() {
-        return this.type;
-    }
-
-    /**
-     * Getter method for private variable, quantity
-     * 
-     * @return Furniture quantity
-     */
-    public int getQuantity() {
-        return this.quantity;
     }
 
     /**
