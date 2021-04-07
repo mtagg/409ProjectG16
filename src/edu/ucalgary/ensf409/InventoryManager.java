@@ -139,7 +139,7 @@ public class InventoryManager {
 			
             if(found){
                 break;
-		}
+            }
         }
 		
         // If the cheapest combination has been found return create order and return
@@ -170,7 +170,7 @@ public class InventoryManager {
      * Helper method that returns and Array of Array of integers that represent the
      * subsets possible. Where n is the maximum length and k is the length of each subset.
      * n C k (n Choose k).
-	 *
+     *
      * @param subsets List of all subsets
      * @param subset Current subset
      * @param n maximum size
