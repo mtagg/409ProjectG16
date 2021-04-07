@@ -108,7 +108,7 @@ public class InventorySystem {
                 return null;
             }
         } 
-		catch (Exception e) {
+	catch (Exception e) {
             // If an error occurs when reading inputs, print error message and stack trace
             System.out.println("Invalid Furniture Category Request");
             e.printStackTrace();
@@ -136,7 +136,7 @@ public class InventorySystem {
                 return null;
             }
         } 
-		catch (Exception e) {
+	catch (Exception e) {
             // If an error occurs when reading inputs, print error message and stack trace
             System.out.println("Invalid" + getCategory() + "Type Request");
             e.printStackTrace();
@@ -164,7 +164,7 @@ public class InventorySystem {
                 return -1;
             }
         } 
-		catch (Exception e) {
+	catch (Exception e) {
             // If an error occurs when reading inputs, output error message and stack trace
             System.out.println("Invalid Furniture Quantity Request");
             e.printStackTrace();
