@@ -64,7 +64,7 @@ public class InventorySystem {
 
     /**
      * Helper method to print error message of furniture cannot be sourced
-	 *
+     *
      * @param category category of requested furniture
      */
     private void printErrorMessage(String category) {
