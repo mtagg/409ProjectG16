@@ -22,6 +22,7 @@ import java.util.Scanner;
  * Inventory manager class that handles piecing together components
  * to provide furniture. Uses the Database Driver and Order Generator.
  */
+ 
 public class InventoryManager {
     private DatabaseDriver dbDriver;
 
@@ -33,7 +34,7 @@ public class InventoryManager {
     }
 
     /**
-     * wrapper for DatabaseDriver method checkCategory() to check category validity
+     * Wrapper for DatabaseDriver method checkCategory() to check category validity
      * 
      * @param category to be checked for validity
      * @return true if category exists within database, else, false
@@ -43,7 +44,7 @@ public class InventoryManager {
     }
 
     /**
-     * wrapper for DatabaseDriver method checkType() to check type validity
+     * Wrapper for DatabaseDriver method checkType() to check type validity
      * 
      * @param category is a verified database category
      * @param type     is the type to be checked for within category
@@ -54,7 +55,7 @@ public class InventoryManager {
     }
 
     /**
-     * wrapper for DatabaseDriver method close() to close SQL connection
+     * Wrapper for DatabaseDriver method close() to close SQL connection
      */
     public boolean close() {
         return this.dbDriver.close();
@@ -69,7 +70,7 @@ public class InventoryManager {
      * returned if a complete piece of furniture is able to be built with the
      * current inventory.
      * 
-     * if furniture can be created using the inventory, an orderform will be
+     * If furniture can be created using the inventory, an orderform will be
      * created, and furniture items will be removed using the removeFurniture method
      * within DatabaseDriver.java
      * 
@@ -83,15 +84,19 @@ public class InventoryManager {
         if(quantity < 0){
             return false;
         }
+		
         // request furniture items in an array lizt
         ArrayList<Furniture> furniture = dbDriver.getFurniture(category, type);
         // System.out.println("FURNITURE SIZE: " + furniture.size());
-        if(furniture.size() == 0)
+        if(furniture.size() == 0){
             return false;
+		}
+		
         int minPrice = Integer.MAX_VALUE;
         // create array to hold all possible(if any) furniture build combinations
         ArrayList<Furniture> cheapest = new ArrayList<Furniture>();
         boolean found = false;
+		
         // iterate through all furniture data to find all combinations that may build a
         // complete furniture item
         for (int i = 0; i < furniture.size(); i++) {
@@ -101,10 +106,14 @@ public class InventoryManager {
             // combinations
             getSubsets(subsets, new ArrayList<Integer>(), furniture.size() - 1, i + 1, 0);
             ArrayList<ArrayList<Furniture>> furnitureSubsets = new ArrayList<ArrayList<Furniture>>();
+			
             for(ArrayList<Integer> subset: subsets) {
                 ArrayList<Furniture> furnitureSubset = new ArrayList<Furniture>();
-                for(Integer n : subset)
+				
+                for(Integer n : subset){
                     furnitureSubset.add(furniture.get(n));
+				}
+				
                 furnitureSubsets.add(furnitureSubset);
             }
 
@@ -112,10 +121,12 @@ public class InventoryManager {
             for(ArrayList<Furniture> subset : furnitureSubsets) {
                 ArrayList<boolean[]> componentsArray = new ArrayList<boolean[]>();
                 int price = 0;
+				
                 for(Furniture f : subset) {
                     componentsArray.add(f.getComponents());
                     price += f.getPrice();
                 }
+				
                 // check if price is cheaper than any current price (starts with comparing to
                 // MAX_VALUE)
                 if(canBeUsable(componentsArray, quantity) && price < minPrice) {
@@ -125,9 +136,12 @@ public class InventoryManager {
                     break;
                 }
             }
-            if(found)
+			
+            if(found){
                 break;
+			}
         }
+		
         // if the cheapest combination has been found return create order and return
         // true
         if(minPrice != Integer.MAX_VALUE) {
@@ -136,6 +150,7 @@ public class InventoryManager {
             dbDriver.removeFurniture(cheapest, category);
             return true;
         }
+		
         // code reaches this point if no combinations of furniture were successful in
         // creating a new piece
         return false;
@@ -143,6 +158,7 @@ public class InventoryManager {
 
     /**
      * Wrapper method that gets list of suggested manufacturers for certain category of furniture
+	 *
      * @param category the category of furniture
      * @return Array of String of manufacturer names
      */
@@ -154,6 +170,7 @@ public class InventoryManager {
      * Helper method that returns and Array of Array of integers that represent the
      * subsets possible. Where n is the maximum length and k is the length of each subset.
      * n C k (n Choose k).
+	 *
      * @param subsets List of all subsets
      * @param subset Current subset
      * @param n maximum size
@@ -165,6 +182,7 @@ public class InventoryManager {
             subsets.add(new ArrayList<Integer>(subset));
             return;
         }
+		
         // recursively calls getSubsets to create a complete list of combinations to
         // test
         for(int i = start; i <= n; i++) {
@@ -178,6 +196,7 @@ public class InventoryManager {
      * Helper method that counts the number of each available component and determines
      * if the requested quantity of furniture can be sourced from the given number of
      * components.
+	 *
      * @param array an array of boolean arrays. Each boolean array represents the component usability of one piece of furniture.
      * the array of boolean arrays, represent the component usability of a set of furniture.
      * @param quantity the quantity of furniture needed to be sourced
@@ -185,8 +204,8 @@ public class InventoryManager {
      */
     private boolean canBeUsable(ArrayList<boolean[]> array, int quantity) {
         // System.out.println("arrayy size is: " + array.size());
-
         int [] covered = new int[array.get(0).length];
+		
         // populate an array to show the quantity of each part in current inventory
         for(boolean [] bArr : array) {
             for (int i = 0; i < bArr.length; i++) {
@@ -195,12 +214,14 @@ public class InventoryManager {
                 }
             }
         }
+		
         // check to make sure we have at least "quantity" number of each required part
         for (int i = 0; i < covered.length; i++) {
             if (covered[i] < quantity) {
                 return false;
             }
         }
+		
         return true;
     }
 }
