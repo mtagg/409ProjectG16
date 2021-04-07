@@ -90,7 +90,7 @@ public class InventoryManager {
         // System.out.println("FURNITURE SIZE: " + furniture.size());
         if(furniture.size() == 0){
             return false;
-		}
+	}
 		
         int minPrice = Integer.MAX_VALUE;
         // Create array to hold all possible(if any) furniture build combinations
@@ -112,7 +112,7 @@ public class InventoryManager {
 				
                 for(Integer n : subset){
                     furnitureSubset.add(furniture.get(n));
-				}
+		}
 				
                 furnitureSubsets.add(furnitureSubset);
             }
@@ -139,7 +139,7 @@ public class InventoryManager {
 			
             if(found){
                 break;
-			}
+		}
         }
 		
         // If the cheapest combination has been found return create order and return
