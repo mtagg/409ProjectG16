@@ -14,14 +14,6 @@ package edu.ucalgary.ensf409;
  * @since 1.0
  */
 
-/*
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.Statement;
-import java.sql.DriverManager;
-*/
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -47,7 +39,7 @@ public class DatabaseDriver {
         String pass = "";
 
         try {
-			// Try asking for credentials and storing them in Strings user and pass
+            // Try asking for credentials and storing them in Strings user and pass
             System.out.print("\nEnter MySQL user: ");
             user = sc.nextLine();
             System.out.print("Enter MySQL password: ");
@@ -65,11 +57,11 @@ public class DatabaseDriver {
         DB_PWD = pass;
 
         try {
-			// Try to establish a connection to the MySQL database using the entered credentials
+            // Try to establish a connection to the MySQL database using the entered credentials
             this.conn = DriverManager.getConnection(DB_URL, DB_USR, DB_PWD);
         }
 		catch (SQLException e) {
-			// If the connection cannot be established, terminate function
+            // If the connection cannot be established, terminate function
             e.printStackTrace();
             System.out.println("MySQL connection attempt failed\n");
             System.exit(1);
@@ -77,17 +69,17 @@ public class DatabaseDriver {
     }
 
     /**
-     * method closes ResultSet and SQL connection variables rs, conn.
+     * Method closes ResultSet and SQL connection variables rs, conn.
      */
     public boolean close() {
         try {
-			// Try to close release database resources and return true if successful
+            // Try to close release database resources and return true if successful
             rs.close();
             conn.close();
             return true;
         }
 		catch (SQLException e) {
-			// If database resources cannot be released, print error message and return false
+            // If database resources cannot be released, print error message and return false
             System.err.println("Error whilst closing SQL connection");
             e.printStackTrace();
             return false;
@@ -95,7 +87,7 @@ public class DatabaseDriver {
     }
 
     /**
-     * method checks for validity of category input from user
+     * Method checks for validity of category input from user
      *
      * @param category to be checked
      * @return true if category is found, else false
@@ -116,7 +108,7 @@ public class DatabaseDriver {
     }
 
     /**
-     * method checks for validity of type input from user
+     * Method checks for validity of type input from user
      *
      * @param category validated category to search within
      * @param type     to be checked within category
@@ -132,9 +124,9 @@ public class DatabaseDriver {
             this.rs = stmt.executeQuery();
             return rs.next();
         }
-		catch (SQLException e) {
-			// If argument type cannot be found in category or argument category doesn't exist in the
-			// database, return false
+        catch (SQLException e) {
+            // If argument type cannot be found in category or argument category doesn't exist in the
+            // database, return false
             return false;
         }
     }
@@ -149,15 +141,15 @@ public class DatabaseDriver {
         ArrayList<Furniture> furniture = new ArrayList<Furniture>();
 
         try {
-			// Use a prepared statement to find all possible types from category
+            // Use a prepared statement to find all possible types from category
             String query = String.format("SELECT * FROM %s WHERE Type = ? ORDER BY price ASC", category);
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, type);
             this.rs = stmt.executeQuery();
 
             while(rs.next()) {
-				// Loop to get the ID and prices from the data base and check if the piece of furniture can be
-				// assemebled
+                // Loop to get the ID and prices from the data base and check if the piece of furniture can be
+                // assemebled
                 String ID = rs.getString("ID");
                 int price = rs.getInt("Price");
 				// Int to represent how many parts are in the desired piece of furniture
@@ -165,18 +157,18 @@ public class DatabaseDriver {
                 boolean [] usableComponents = new boolean[numComponents];
 
                 for(int i = 0; i < numComponents; i++) {
-					// Loop to check if parts of the furniture are available
+                    // Loop to check if parts of the furniture are available
                     usableComponents[i] = rs.getString(i + 3).equals("Y");
                 }
 
-				// Create new furniture object to be added to the array list
+                // Create new furniture object to be added to the array list
                 Furniture furn = new Furniture(ID, price, usableComponents);
                 furniture.add(furn);
             }
             stmt.close();
         }
 		catch (SQLException e) {
-			// If an error occurs when reading or getting of data from the database, print the stack trace
+            // If an error occurs when reading or getting of data from the database, print the stack trace
             e.printStackTrace();
         }
 
@@ -193,15 +185,15 @@ public class DatabaseDriver {
         ArrayList<String> manufacturers = new ArrayList<String>();
 
         try {
-			// Use a prepared statement to get the manufactururs that make the furniture in the
-			// argument category
+            // Use a prepared statement to get the manufactururs that make the furniture in the
+            // argument category
             String query = String.format("SELECT ManuID FROM %s", category);
             Statement stmt = conn.createStatement();
             ArrayList<String> ids = new ArrayList<String>();
             this.rs = stmt.executeQuery(query);
 
             while(rs.next()) {
-				// Loop to get all of the manufacturers
+                // Loop to get all of the manufacturers
                 String id = rs.getString("ManuID");
                 if(ids.contains(id)){
                     continue;
@@ -212,27 +204,27 @@ public class DatabaseDriver {
 
             query = "SELECT Name FROM manufacturer WHERE ManuID IN (" + ids.get(0);
             if(ids.size() > 1) {
-				// If there is at least one manufacturer, update the query
+                // If there is at least one manufacturer, update the query
                 for(int i = 1; i < ids.size(); i++)
                     query += ", " + ids.get(i);
             }
             query += ")";
 
-			// Executing the query
+            // Executing the query
             Statement statement = conn.createStatement();
             ResultSet result = statement.executeQuery(query);
 
             while(result.next()) {
-				// If there is at least one manufactuer, get the name and store it in the array list
+                // If there is at least one manufactuer, get the name and store it in the array list
                 manufacturers.add(result.getString("Name"));
             }
 
-			// Releasing MySQL resources
+            // Releasing MySQL resources
             statement.close();
             result.close();
         }
 		catch (SQLException e) {
-			// If an error occurs when reading or getting of data from the database, print the stack trace
+            // If an error occurs when reading or getting of data from the database, print the stack trace
             e.printStackTrace();
         }
 
@@ -250,19 +242,19 @@ public class DatabaseDriver {
             String query = String.format("DELETE FROM %s WHERE ID IN ('", category);
             query += furniture.get(0).getID();
             if(furniture.size() > 1) {
-				// If the array list has at least one element, update the query
+                // If the array list has at least one element, update the query
                 for(int i = 1; i < furniture.size(); i++) {
                     query += "', '" + furniture.get(i).getID();
                 }
             }
             query += "')";
 
-			// Execute the statement to delete the desired furniture(s)
+            // Execute the statement to delete the desired furniture(s)
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(query);
         }
 		catch (SQLException e) {
-			// If an error occurs when removing of values from the database, print the stack trace
+            // If an error occurs when removing of values from the database, print the stack trace
             e.printStackTrace();
         }
     }
