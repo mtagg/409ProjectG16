@@ -53,7 +53,7 @@ public class DatabaseDriver {
             System.exit(1);
         }
 
-		DB_USR = user;
+	DB_USR = user;
         DB_PWD = pass;
 
         try {
@@ -205,8 +205,9 @@ public class DatabaseDriver {
             query = "SELECT Name FROM manufacturer WHERE ManuID IN (" + ids.get(0);
             if(ids.size() > 1) {
                 // If there is at least one manufacturer, update the query
-                for(int i = 1; i < ids.size(); i++)
+                for(int i = 1; i < ids.size(); i++){
                     query += ", " + ids.get(i);
+		}
             }
             query += ")";
 
