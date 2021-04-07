@@ -34,7 +34,7 @@ public class DatabaseDriver {
      * Constructor of Database Driver class
      */
     public DatabaseDriver(Scanner sc) {
-		// Strings to be filled using input from the keyboard
+        // Strings to be filled using input from the keyboard
         String user = "";
         String pass = "";
 
@@ -46,8 +46,8 @@ public class DatabaseDriver {
             pass = sc.nextLine();
             System.out.println();
         }
-		catch (Exception e) {
-			// If a reading error occurs, terminate program
+        catch (Exception e) {
+            // If a reading error occurs, terminate program
             e.printStackTrace();
             System.err.println("MySQL user/password were not collected, please restart program.");
             System.exit(1);
@@ -60,7 +60,7 @@ public class DatabaseDriver {
             // Try to establish a connection to the MySQL database using the entered credentials
             this.conn = DriverManager.getConnection(DB_URL, DB_USR, DB_PWD);
         }
-		catch (SQLException e) {
+        catch (SQLException e) {
             // If the connection cannot be established, terminate function
             e.printStackTrace();
             System.out.println("MySQL connection attempt failed\n");
@@ -78,7 +78,7 @@ public class DatabaseDriver {
             conn.close();
             return true;
         }
-		catch (SQLException e) {
+        catch (SQLException e) {
             // If database resources cannot be released, print error message and return false
             System.err.println("Error whilst closing SQL connection");
             e.printStackTrace();
@@ -94,15 +94,14 @@ public class DatabaseDriver {
      */
     public boolean checkCategory(String category) {
         try {
-			// Use a prepared statement to see if the argument category exists in the database and if so,
-            // return true
+            // Use a prepared statement to see if the argument category exists in the database and if so, return true
             String query = "SELECT * FROM " + category;
             PreparedStatement stmt = conn.prepareStatement(query);
             this.rs = stmt.executeQuery();
             return rs.next();
         }
-		catch (SQLException e) {
-			// If argument category cannot be found, return false
+        catch (SQLException e) {
+            // If argument category cannot be found, return false
             return false;
         }
     }
@@ -116,8 +115,8 @@ public class DatabaseDriver {
      */
     public boolean checkType(String category, String type) {
         try {
-			// Use a prepared statement to see if argument type is in argument category and if so,
-			// return true.
+            // Use a prepared statement to see if argument type is in argument category and if so,
+            // return true.
             String query = "SELECT * FROM " + category + " WHERE Type = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, type);
@@ -152,7 +151,7 @@ public class DatabaseDriver {
                 // assemebled
                 String ID = rs.getString("ID");
                 int price = rs.getInt("Price");
-				// Int to represent how many parts are in the desired piece of furniture
+                // Int to represent how many parts are in the desired piece of furniture
                 int numComponents = rs.getMetaData().getColumnCount() - 4;
                 boolean [] usableComponents = new boolean[numComponents];
 
@@ -167,7 +166,7 @@ public class DatabaseDriver {
             }
             stmt.close();
         }
-		catch (SQLException e) {
+        catch (SQLException e) {
             // If an error occurs when reading or getting of data from the database, print the stack trace
             e.printStackTrace();
         }
@@ -195,9 +194,10 @@ public class DatabaseDriver {
             while(rs.next()) {
                 // Loop to get all of the manufacturers
                 String id = rs.getString("ManuID");
+
                 if(ids.contains(id)){
                     continue;
-				}
+                }
 
                 ids.add(id);
             }
@@ -223,7 +223,7 @@ public class DatabaseDriver {
             statement.close();
             result.close();
         }
-		catch (SQLException e) {
+        catch (SQLException e) {
             // If an error occurs when reading or getting of data from the database, print the stack trace
             e.printStackTrace();
         }
@@ -253,7 +253,7 @@ public class DatabaseDriver {
             Statement stmt = conn.createStatement();
             stmt.executeUpdate(query);
         }
-		catch (SQLException e) {
+        catch (SQLException e) {
             // If an error occurs when removing of values from the database, print the stack trace
             e.printStackTrace();
         }
