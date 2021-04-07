@@ -158,7 +158,7 @@ public class InventoryManager {
 
     /**
      * Wrapper method that gets list of suggested manufacturers for certain category of furniture
-	 *
+     *
      * @param category the category of furniture
      * @return Array of String of manufacturer names
      */
@@ -196,7 +196,7 @@ public class InventoryManager {
      * Helper method that counts the number of each available component and determines
      * if the requested quantity of furniture can be sourced from the given number of
      * components.
-	 *
+     *
      * @param array an array of boolean arrays. Each boolean array represents the component usability of one piece of furniture.
      * the array of boolean arrays, represent the component usability of a set of furniture.
      * @param quantity the quantity of furniture needed to be sourced
