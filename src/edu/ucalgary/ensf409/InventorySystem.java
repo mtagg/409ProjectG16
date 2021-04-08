@@ -138,7 +138,7 @@ public class InventorySystem {
         } 
 	catch (Exception e) {
             // If an error occurs when reading inputs, print error message and stack trace
-            System.out.println("Invalid" + getCategory() + "Type Request");
+            System.out.println("Invalid" + category + "Type Request");
             e.printStackTrace();
             return null;
         }

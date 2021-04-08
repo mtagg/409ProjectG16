@@ -4,11 +4,9 @@ Faculty Name:
 Contact:
 Date:
 
-Original Request: executive chair, 1
+Original Request: Desk Lamp, 1
 
 Items Ordered
-ID: C7268
-ID: C5784
-ID: C2483
+ID: D3820
 
-Total Price: $400
+Total Price: $150

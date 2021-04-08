@@ -26,7 +26,7 @@ public class InventorySystemTest {
         test.run();
     }
 
-    @Rule public ExpectedException error=ExpectedException.none();
+    // @Rule public ExpectedException error=ExpectedException.none();
 
     /*
     @Test
